@@ -9,144 +9,95 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
             color: white;
+            text-align: center;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            flex-direction: column;
         }
-
-        .glow-text {
-            font-size: 3em;
-            color: white;
-            text-shadow: 0px 0px 15px rgba(255, 152, 0, 0.7), 0px 0px 25px rgba(255, 152, 0, 0.7), 0px 0px 35px rgba(255, 152, 0, 0.7);
-            animation: glow-animation 2s infinite alternate;
+        .glow {
+            font-size: 2em;
+            color: #ff9800;
+            text-shadow: 0px 0px 10px #ff9800;
         }
-
-        @keyframes glow-animation {
-            0% {
-                text-shadow: 0px 0px 15px rgba(255, 152, 0, 0.7), 0px 0px 25px rgba(255, 152, 0, 0.7), 0px 0px 35px rgba(255, 152, 0, 0.7);
-            }
-            50% {
-                text-shadow: 0px 0px 20px rgba(255, 0, 255, 1), 0px 0px 30px rgba(255, 0, 255, 1), 0px 0px 40px rgba(255, 0, 255, 1);
-            }
-            100% {
-                text-shadow: 0px 0px 15px rgba(0, 255, 255, 1), 0px 0px 25px rgba(0, 255, 255, 1), 0px 0px 35px rgba(0, 255, 255, 1);
-            }
-        }
-
-        h1 {
-            font-size: 4em;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        h1 span {
-            display: inline-block;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 span:nth-child(1) {
-            animation-delay: 0s;
-        }
-        h1 span:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-        h1 span:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-        h1 span:nth-child(4) {
-            animation-delay: 0.3s;
-        }
-        h1 span:nth-child(5) {
-            animation-delay: 0.4s;
-        }
-        h1 span:nth-child(6) {
-            animation-delay: 0.5s;
-        }
-        h1 span:nth-child(7) {
-            animation-delay: 0.6s;
-        }
-
         nav ul {
             list-style: none;
             padding: 0;
-            margin-top: 20px;
-            display: flex;
-            gap: 30px;
-            justify-content: center;
         }
-
         nav ul li {
-            display: inline-block;
-            animation: fadeIn 1s ease-out 1s forwards;
+            display: inline;
+            margin: 0 15px;
         }
-
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 1.5em;
-            transition: color 0.3s, text-shadow 0.3s;
         }
-
-        nav ul li a:hover {
-            color: #ff9800;
-            text-shadow: 0px 0px 15px rgba(255, 152, 0, 1), 0px 0px 25px rgba(255, 152, 0, 1);
-        }
-
         .question {
             cursor: pointer;
             font-weight: bold;
             color: #ff9800;
             margin-top: 10px;
-            animation: fadeIn 1s ease-out 2s forwards;
         }
-
         .answer {
             display: none;
             font-size: 1em;
             color: white;
             margin-top: 5px;
-            animation: fadeIn 1s ease-out 3s forwards;
         }
-
-        .answer-show {
-            display: block;
+        .progress {
+            width: 100%;
+            background: #333;
+            height: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
         }
-
-        section {
+        .progress-bar {
+            height: 10px;
+            background: #ff9800;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        #typing-input {
+            padding: 10px;
+            margin: 10px;
             width: 80%;
-            max-width: 1200px;
+        }
+        #typing-result {
+            font-size: 1.2em;
+            color: #ff9800;
+        }
+        .file-upload {
+            margin-top: 20px;
+            text-align: left;
+        }
+        input[type="file"] {
+            background-color: #333;
+            border: 1px solid #ff9800;
+            padding: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+        input[type="file"]:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #ff9800;
+        }
+        .file-upload label {
+            font-size: 1em;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .about-section, .skills-section, .contact-section {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="glow-text">
-            <span>S</span><span>t</span><span>e</span><span>r</span><span>l</span><span>i</span><span>n</span>
-            <span> </span>
-            <span>R</span><span>a</span><span>j</span> <br />
-            <span>G</span><span>S</span>
-        </h1>
-        <span>2nd Year BCA Student | Aspiring Software Developer</span>
+        <h1 class="glow">Sterlin Raj GS</h1>
         <nav>
             <ul>
                 <li><a href="#about">About Me</a></li>
@@ -159,66 +110,116 @@
         </nav>
     </header>
 
-    <section id="about">
-        <h2 class="glow-text" style="animation-delay: 3s;">About Me</h2>
-        <p class="glow-text" style="animation-delay: 4s;">I am Sterlin Raj GS, a passionate BCA student and tech enthusiast.</p>
-        <p class="glow-text" style="animation-delay: 5s;">My motivation is building futuristic applications and solving real-world problems.</p>
+    <section id="about" class="about-section">
+        <h2>About Me</h2>
+        <p><strong>Sterlin Raj GS</strong></p>
+        <p>2nd Year BCA Student | Aspiring Software Developer</p>
+        <p><strong>Phone:</strong> 7358012637</p>
+        <p><strong>Email:</strong> <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">linkedin.com/in/sterlin-raj-6a91082a9</a></p>
+        
+        <h3>Technical Skills</h3>
+        <ul>
+            <li><strong>Programming Languages:</strong> Java, Python, C++</li>
+            <li><strong>Web Development:</strong> HTML, CSS, JavaScript</li>
+            <li><strong>Core Skills:</strong> Software Development, Problem-Solving, Debugging</li>
+        </ul>
+        
+        <h3>Education</h3>
+        <p><strong>DRBCCC Hindu College, Chennai (Affiliated with Madras University)</strong></p>
+        <p>BCA (Bachelor of Computer Applications) | 2023 - 2026 (Expected Graduation)</p>
 
-        <h3 class="question" onclick="toggleAnswer(0)" style="animation-delay: 6s;">Who am I?</h3>
+        <h3>Academic Project</h3>
+        <p><strong>IoT-Based Agricultural Optimization System</strong></p>
+        <ul>
+            <li>Designed and developed an IoT-based solution to optimize agricultural processes.</li>
+            <li>Integrated real-time sensors for monitoring and automation, improving efficiency.</li>
+        </ul>
+
+        <h3>Strengths</h3>
+        <ul>
+            <li>Strong problem-solving mindset</li>
+            <li>Passion for learning new technologies</li>
+            <li>Strong analytical & logical thinking</li>
+        </ul>
+
+        <h3>Questions</h3>
+        <p class="question" onclick="toggleAnswer(0)">Who am I?</p>
         <p class="answer">I am Sterlin Raj GS, a passionate BCA student and tech enthusiast.</p>
-
-        <h3 class="question" onclick="toggleAnswer(1)" style="animation-delay: 7s;">What motivates me?</h3>
+        <p class="question" onclick="toggleAnswer(1)">What motivates me?</p>
         <p class="answer">Building futuristic applications and solving real-world problems.</p>
     </section>
 
-    <section id="skills">
-        <h2 class="glow-text" style="animation-delay: 8s;">Skills & Achievements</h2>
+    <section id="skills" class="skills-section">
+        <h2>Skills & Achievements</h2>
         <div class="skill">
-            <p class="glow-text" style="animation-delay: 9s;">C++ (Expert)</p>
+            <p>C++ (Expert)</p>
             <div class="progress"><div class="progress-bar" id="cpp" style="width: 90%;"></div></div>
         </div>
         <div class="skill">
-            <p class="glow-text" style="animation-delay: 10s;">Python (Advanced)</p>
+            <p>Python (Advanced)</p>
             <div class="progress"><div class="progress-bar" id="python" style="width: 85%;"></div></div>
         </div>
     </section>
 
     <section id="projects">
-        <h2 class="glow-text" style="animation-delay: 11s;">Projects</h2>
+        <h2>Projects</h2>
         <div class="project">
-            <h3 class="glow-text" style="animation-delay: 12s;">IoT-Based Smart Agriculture</h3>
-            <p class="glow-text" style="animation-delay: 13s;">Developed a smart farming system using sensors for real-time monitoring.</p>
+            <h3>IoT-Based Smart Agriculture</h3>
+            <p>Developed a smart farming system using sensors for real-time monitoring.</p>
         </div>
     </section>
 
     <section id="game">
-        <h2 class="glow-text" style="animation-delay: 14s;">Typing Speed Test</h2>
-        <input type="text" id="typing-input" placeholder="Start typing..." style="animation-delay: 15s;" />
-        <p id="typing-result" style="animation-delay: 16s;"></p>
+        <h2>Typing Speed Test</h2>
+        <input type="text" id="typing-input" placeholder="Start typing..." />
+        <p id="typing-result"></p>
     </section>
 
-    <section id="contact">
-        <h2 class="glow-text" style="animation-delay: 17s;">Contact Me</h2>
-        <p class="glow-text" style="animation-delay: 18s;">📞 7358012637</p>
-        <p class="glow-text" style="animation-delay: 19s;">📧 <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
-        <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank" class="glow-text" style="animation-delay: 20s;">🔗 LinkedIn</a>
+    <section id="contact" class="contact-section">
+        <h2>Contact Me</h2>
+        <p>📞 7358012637</p>
+        <p>📧 <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
+        <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">🔗 LinkedIn</a>
 
         <!-- File Upload Form -->
         <div class="file-upload">
-            <label for="file-upload" class="glow-text" style="animation-delay: 21s;">Upload a File:</label>
-            <input type="file" id="file-upload" name="file-upload" style="animation-delay: 22s;">
+            <label for="file-upload">Upload a File:</label>
+            <input type="file" id="file-upload" name="file-upload">
         </div>
     </section>
 
     <script>
         function toggleAnswer(index) {
             let answers = document.querySelectorAll('.answer');
-            answers[index].classList.toggle('answer-show');
+            answers[index].style.display = answers[index].style.display === 'block' ? 'none' : 'block';
         }
 
         document.getElementById("typing-input").addEventListener("input", function () {
             let text = this.value.trim().length;
             document.getElementById("typing-result").innerText = "Characters Typed: " + text;
+        });
+
+        document.addEventListener("mousemove", function (e) {
+            let x = e.clientX;
+            let y = e.clientY;
+            let neonEffect = document.createElement("div");
+            neonEffect.style.position = "fixed";
+            neonEffect.style.top = y + "px";
+            neonEffect.style.left = x + "px";
+            neonEffect.style.width = "10px";
+            neonEffect.style.height = "10px";
+            neonEffect.style.backgroundColor = "#ff9800";
+            neonEffect.style.borderRadius = "50%";
+            neonEffect.style.opacity = "0.5";
+            neonEffect.style.pointerEvents = "none";
+            neonEffect.style.transition = "opacity 0.5s ease-out";
+            document.body.appendChild(neonEffect);
+
+            setTimeout(() => {
+                neonEffect.style.opacity = "0";
+                setTimeout(() => document.body.removeChild(neonEffect), 500);
+            }, 50);
         });
     </script>
 </body>
