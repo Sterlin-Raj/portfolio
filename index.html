@@ -9,40 +9,82 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
             color: white;
-            text-align: center;
             margin: 0;
             padding: 0;
-            scroll-behavior: smooth;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
         }
-        .glow {
-            font-size: 2em;
+
+        .glow-text {
+            font-size: 3em;
+            color: white;
+            text-shadow: 0px 0px 15px rgba(255, 152, 0, 0.7), 0px 0px 25px rgba(255, 152, 0, 0.7), 0px 0px 35px rgba(255, 152, 0, 0.7);
+            animation: glow-animation 2s infinite alternate;
+        }
+
+        @keyframes glow-animation {
+            0% {
+                text-shadow: 0px 0px 15px rgba(255, 152, 0, 0.7), 0px 0px 25px rgba(255, 152, 0, 0.7), 0px 0px 35px rgba(255, 152, 0, 0.7);
+            }
+            50% {
+                text-shadow: 0px 0px 20px rgba(255, 0, 255, 1), 0px 0px 30px rgba(255, 0, 255, 1), 0px 0px 40px rgba(255, 0, 255, 1);
+            }
+            100% {
+                text-shadow: 0px 0px 15px rgba(0, 255, 255, 1), 0px 0px 25px rgba(0, 255, 255, 1), 0px 0px 35px rgba(0, 255, 255, 1);
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: white;
+            margin: 0;
+            animation: fadeIn 1s ease-out 1s forwards;
+        }
+
+        h1 span {
+            display: block;
+            font-size: 1.5em;
             color: #ff9800;
-            text-shadow: 0px 0px 10px #ff9800, 0px 0px 20px #ff9800, 0px 0px 30px #ff9800;
-            animation: glow 1.5s ease-in-out infinite;
+            animation: fadeIn 1s ease-out 2s forwards;
         }
-        @keyframes glow {
-            0% { text-shadow: 0px 0px 10px #ff9800, 0px 0px 20px #ff9800, 0px 0px 30px #ff9800; }
-            50% { text-shadow: 0px 0px 20px #ff9800, 0px 0px 30px #ff9800, 0px 0px 40px #ff9800; }
-            100% { text-shadow: 0px 0px 10px #ff9800, 0px 0px 20px #ff9800, 0px 0px 30px #ff9800; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         nav ul {
             list-style: none;
             padding: 0;
+            margin-top: 20px;
         }
+
         nav ul li {
-            display: inline;
+            display: inline-block;
             margin: 0 15px;
+            animation: fadeIn 1s ease-out 3s forwards;
         }
+
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 1.2em;
+            font-size: 1.5em;
             transition: color 0.3s, text-shadow 0.3s;
         }
+
         nav ul li a:hover {
             color: #ff9800;
-            text-shadow: 0px 0px 10px #ff9800;
+            text-shadow: 0px 0px 15px rgba(255, 152, 0, 1), 0px 0px 25px rgba(255, 152, 0, 1);
         }
 
         .question {
@@ -50,10 +92,7 @@
             font-weight: bold;
             color: #ff9800;
             margin-top: 10px;
-            transition: color 0.3s;
-        }
-        .question:hover {
-            color: #ff5722;
+            animation: fadeIn 1s ease-out 4s forwards;
         }
 
         .answer {
@@ -61,112 +100,23 @@
             font-size: 1em;
             color: white;
             margin-top: 5px;
+            animation: fadeIn 1s ease-out 5s forwards;
         }
 
-        .progress {
-            width: 100%;
-            background: #333;
-            height: 10px;
-            border-radius: 5px;
-            margin: 5px 0;
-            position: relative;
+        .answer-show {
+            display: block;
         }
 
-        .progress-bar {
-            height: 10px;
-            background: #ff9800;
-            border-radius: 5px;
-            width: 0%;
-            transition: width 1s ease-in-out;
-        }
-
-        .progress-bar:hover {
-            box-shadow: 0 0 15px #ff9800;
-            transform: scale(1.05);
-        }
-
-        #typing-input {
-            padding: 10px;
-            margin: 10px;
+        section {
             width: 80%;
-            border: 2px solid #ff9800;
-            background: transparent;
-            color: white;
-            font-size: 1.2em;
-            transition: background 0.3s ease;
-        }
-
-        #typing-input:focus {
-            background: #333;
-            outline: none;
-        }
-
-        #typing-result {
-            font-size: 1.2em;
-            color: #ff9800;
-        }
-
-        .file-upload {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        input[type="file"] {
-            background-color: #333;
-            border: 1px solid #ff9800;
-            padding: 20px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        input[type="file"]:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px #ff9800;
-            background-color: #444;
-        }
-
-        input[type="file"]:active {
-            background-color: #555;
-        }
-
-        .file-upload label {
-            font-size: 1em;
-            color: #ff9800;
-            font-weight: bold;
-        }
-
-        .about-section, .skills-section, .contact-section {
-            text-align: left;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        /* Button Glow */
-        .btn-glow {
-            padding: 10px 20px;
-            font-size: 1.2em;
-            border: none;
-            background-color: transparent;
-            color: #ff9800;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 0 5px #ff9800;
-        }
-
-        .btn-glow:hover {
-            background-color: #ff9800;
-            color: #fff;
-            box-shadow: 0 0 20px #ff9800;
+            max-width: 1200px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="glow">Sterlin Raj GS</h1>
+        <h1 class="glow-text">Sterlin Raj GS</h1>
+        <span>2nd Year BCA Student | Aspiring Software Developer</span>
         <nav>
             <ul>
                 <li><a href="#about">About Me</a></li>
@@ -174,121 +124,71 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#game">Mini Game</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="Sterlin_Raj_Resume.pdf" download class="btn-glow">📄 Resume</a></li>
+                <li><a href="Sterlin_Raj_Resume.pdf" download>📄 Resume</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="about" class="about-section">
-        <h2>About Me</h2>
-        <p><strong>Sterlin Raj GS</strong></p>
-        <p>2nd Year BCA Student | Aspiring Software Developer</p>
-        <p><strong>Phone:</strong> 7358012637</p>
-        <p><strong>Email:</strong> <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">linkedin.com/in/sterlin-raj-6a91082a9</a></p>
-        
-        <h3>Technical Skills</h3>
-        <ul>
-            <li><strong>Programming Languages:</strong> Java, Python, C++</li>
-            <li><strong>Web Development:</strong> HTML, CSS, JavaScript</li>
-            <li><strong>Core Skills:</strong> Software Development, Problem-Solving, Debugging</li>
-        </ul>
-        
-        <h3>Education</h3>
-        <p><strong>DRBCCC Hindu College, Chennai (Affiliated with Madras University)</strong></p>
-        <p>BCA (Bachelor of Computer Applications) | 2023 - 2026 (Expected Graduation)</p>
+    <section id="about">
+        <h2 class="glow-text" style="animation-delay: 6s;">About Me</h2>
+        <p class="glow-text" style="animation-delay: 7s;">I am Sterlin Raj GS, a passionate BCA student and tech enthusiast.</p>
+        <p class="glow-text" style="animation-delay: 8s;">My motivation is building futuristic applications and solving real-world problems.</p>
 
-        <h3>Academic Project</h3>
-        <p><strong>IoT-Based Agricultural Optimization System</strong></p>
-        <ul>
-            <li>Designed and developed an IoT-based solution to optimize agricultural processes.</li>
-            <li>Integrated real-time sensors for monitoring and automation, improving efficiency.</li>
-        </ul>
-
-        <h3>Strengths</h3>
-        <ul>
-            <li>Strong problem-solving mindset</li>
-            <li>Passion for learning new technologies</li>
-            <li>Strong analytical & logical thinking</li>
-        </ul>
-
-        <h3>Questions</h3>
-        <p class="question" onclick="toggleAnswer(0)">Who am I?</p>
+        <h3 class="question" onclick="toggleAnswer(0)" style="animation-delay: 9s;">Who am I?</h3>
         <p class="answer">I am Sterlin Raj GS, a passionate BCA student and tech enthusiast.</p>
-        <p class="question" onclick="toggleAnswer(1)">What motivates me?</p>
+
+        <h3 class="question" onclick="toggleAnswer(1)" style="animation-delay: 10s;">What motivates me?</h3>
         <p class="answer">Building futuristic applications and solving real-world problems.</p>
     </section>
 
-    <section id="skills" class="skills-section">
-        <h2>Skills & Achievements</h2>
+    <section id="skills">
+        <h2 class="glow-text" style="animation-delay: 11s;">Skills & Achievements</h2>
         <div class="skill">
-            <p>C++ (Expert)</p>
+            <p class="glow-text" style="animation-delay: 12s;">C++ (Expert)</p>
             <div class="progress"><div class="progress-bar" id="cpp" style="width: 90%;"></div></div>
         </div>
         <div class="skill">
-            <p>Python (Advanced)</p>
+            <p class="glow-text" style="animation-delay: 13s;">Python (Advanced)</p>
             <div class="progress"><div class="progress-bar" id="python" style="width: 85%;"></div></div>
         </div>
     </section>
 
     <section id="projects">
-        <h2>Projects</h2>
+        <h2 class="glow-text" style="animation-delay: 14s;">Projects</h2>
         <div class="project">
-            <h3>IoT-Based Smart Agriculture</h3>
-            <p>Developed a smart farming system using sensors for real-time monitoring.</p>
+            <h3 class="glow-text" style="animation-delay: 15s;">IoT-Based Smart Agriculture</h3>
+            <p class="glow-text" style="animation-delay: 16s;">Developed a smart farming system using sensors for real-time monitoring.</p>
         </div>
     </section>
 
     <section id="game">
-        <h2>Typing Speed Test</h2>
-        <input type="text" id="typing-input" placeholder="Start typing..." />
-        <p id="typing-result"></p>
+        <h2 class="glow-text" style="animation-delay: 17s;">Typing Speed Test</h2>
+        <input type="text" id="typing-input" placeholder="Start typing..." style="animation-delay: 18s;" />
+        <p id="typing-result" style="animation-delay: 19s;"></p>
     </section>
 
-    <section id="contact" class="contact-section">
-        <h2>Contact Me</h2>
-        <p>📞 7358012637</p>
-        <p>📧 <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
-        <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">🔗 LinkedIn</a>
+    <section id="contact">
+        <h2 class="glow-text" style="animation-delay: 20s;">Contact Me</h2>
+        <p class="glow-text" style="animation-delay: 21s;">📞 7358012637</p>
+        <p class="glow-text" style="animation-delay: 22s;">📧 <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
+        <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank" class="glow-text" style="animation-delay: 23s;">🔗 LinkedIn</a>
 
         <!-- File Upload Form -->
         <div class="file-upload">
-            <label for="file-upload">Upload a File:</label>
-            <input type="file" id="file-upload" name="file-upload">
+            <label for="file-upload" class="glow-text" style="animation-delay: 24s;">Upload a File:</label>
+            <input type="file" id="file-upload" name="file-upload" style="animation-delay: 25s;">
         </div>
     </section>
 
     <script>
         function toggleAnswer(index) {
             let answers = document.querySelectorAll('.answer');
-            answers[index].style.display = answers[index].style.display === 'block' ? 'none' : 'block';
+            answers[index].classList.toggle('answer-show');
         }
 
         document.getElementById("typing-input").addEventListener("input", function () {
             let text = this.value.trim().length;
             document.getElementById("typing-result").innerText = "Characters Typed: " + text;
-        });
-
-        document.addEventListener("mousemove", function (e) {
-            let x = e.clientX;
-            let y = e.clientY;
-            let neonEffect = document.createElement("div");
-            neonEffect.style.position = "fixed";
-            neonEffect.style.top = y + "px";
-            neonEffect.style.left = x + "px";
-            neonEffect.style.width = "10px";
-            neonEffect.style.height = "10px";
-            neonEffect.style.backgroundColor = "#ff9800";
-            neonEffect.style.borderRadius = "50%";
-            neonEffect.style.opacity = "0.5";
-            neonEffect.style.pointerEvents = "none";
-            neonEffect.style.transition = "opacity 0.5s ease-out";
-            document.body.appendChild(neonEffect);
-
-            setTimeout(() => {
-                neonEffect.style.opacity = "0";
-                setTimeout(() => document.body.removeChild(neonEffect), 500);
-            }, 50);
         });
     </script>
 </body>
