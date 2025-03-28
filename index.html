@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sterlin Raj - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .glow {
+            font-size: 2em;
+            color: #ff9800;
+            text-shadow: 0px 0px 10px #ff9800;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .question {
+            cursor: pointer;
+            font-weight: bold;
+            color: #ff9800;
+            margin-top: 10px;
+        }
+        .answer {
+            display: none;
+            font-size: 1em;
+            color: white;
+            margin-top: 5px;
+        }
+        .progress {
+            width: 100%;
+            background: #333;
+            height: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #ff9800;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+        #typing-input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+        #typing-result {
+            font-size: 1.2em;
+            color: #ff9800;
+        }
+        .file-upload {
+            margin-top: 20px;
+            text-align: left;
+        }
+        input[type="file"] {
+            background-color: #333;
+            border: 1px solid #ff9800;
+            padding: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+        input[type="file"]:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #ff9800;
+        }
+        .file-upload label {
+            font-size: 1em;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        .about-section, .skills-section, .contact-section {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="glow">Sterlin Raj GS</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#game">Mini Game</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="resume.pdf" download>📄 Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about" class="about-section">
+        <h2>About Me</h2>
+        <p><strong>Sterlin Raj GS</strong></p>
+        <p>2nd Year BCA Student | Aspiring Software Developer</p>
+        <p><strong>Phone:</strong> 7358012637</p>
+        <p><strong>Email:</strong> <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">linkedin.com/in/sterlin-raj-6a91082a9</a></p>
+        
+        <h3>Technical Skills</h3>
+        <ul>
+            <li><strong>Programming Languages:</strong> Java, Python, C++</li>
+            <li><strong>Web Development:</strong> HTML, CSS, JavaScript</li>
+            <li><strong>Core Skills:</strong> Software Development, Problem-Solving, Debugging</li>
+        </ul>
+        
+        <h3>Education</h3>
+        <p><strong>DRBCCC Hindu College, Chennai (Affiliated with Madras University)</strong></p>
+        <p>BCA (Bachelor of Computer Applications) | 2023 - 2026 (Expected Graduation)</p>
+
+        <h3>Academic Project</h3>
+        <p><strong>IoT-Based Agricultural Optimization System</strong></p>
+        <ul>
+            <li>Designed and developed an IoT-based solution to optimize agricultural processes.</li>
+            <li>Integrated real-time sensors for monitoring and automation, improving efficiency.</li>
+        </ul>
+
+        <h3>Strengths</h3>
+        <ul>
+            <li>Strong problem-solving mindset</li>
+            <li>Passion for learning new technologies</li>
+            <li>Strong analytical & logical thinking</li>
+        </ul>
+
+        <h3>Questions</h3>
+        <p class="question" onclick="toggleAnswer(0)">Who am I?</p>
+        <p class="answer">I am Sterlin Raj GS, a passionate BCA student and tech enthusiast.</p>
+        <p class="question" onclick="toggleAnswer(1)">What motivates me?</p>
+        <p class="answer">Building futuristic applications and solving real-world problems.</p>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <h2>Skills & Achievements</h2>
+        <div class="skill">
+            <p>C++ (Expert)</p>
+            <div class="progress"><div class="progress-bar" id="cpp" style="width: 90%;"></div></div>
+        </div>
+        <div class="skill">
+            <p>Python (Advanced)</p>
+            <div class="progress"><div class="progress-bar" id="python" style="width: 85%;"></div></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>IoT-Based Smart Agriculture</h3>
+            <p>Developed a smart farming system using sensors for real-time monitoring.</p>
+        </div>
+    </section>
+
+    <section id="game">
+        <h2>Typing Speed Test</h2>
+        <input type="text" id="typing-input" placeholder="Start typing..." />
+        <p id="typing-result"></p>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Contact Me</h2>
+        <p>📞 7358012637</p>
+        <p>📧 <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
+        <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">🔗 LinkedIn</a>
+
+        <!-- File Upload Form -->
+        <div class="file-upload">
+            <label for="file-upload">Upload a File:</label>
+            <input type="file" id="file-upload" name="file-upload">
+        </div>
+    </section>
+
+    <script>
+        function toggleAnswer(index) {
+            let answers = document.querySelectorAll('.answer');
+            answers[index].style.display = answers[index].style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.getElementById("typing-input").addEventListener("input", function () {
+            let text = this.value.trim().length;
+            document.getElementById("typing-result").innerText = "Characters Typed: " + text;
+        });
+
+        document.addEventListener("mousemove", function (e) {
+            let x = e.clientX;
+            let y = e.clientY;
+            let neonEffect = document.createElement("div");
+            neonEffect.style.position = "fixed";
+            neonEffect.style.top = y + "px";
+            neonEffect.style.left = x + "px";
+            neonEffect.style.width = "10px";
+            neonEffect.style.height = "10px";
+            neonEffect.style.backgroundColor = "#ff9800";
+            neonEffect.style.borderRadius = "50%";
+            neonEffect.style.opacity = "0.5";
+            neonEffect.style.pointerEvents = "none";
+            neonEffect.style.transition = "opacity 0.5s ease-out";
+            document.body.appendChild(neonEffect);
+
+            setTimeout(() => {
+                neonEffect.style.opacity = "0";
+                setTimeout(() => document.body.removeChild(neonEffect), 500);
+            }, 50);
+        });
+    </script>
+</body>
+</html>
