@@ -15,8 +15,8 @@
         }
         .glow {
             font-size: 2em;
-            color: #ff9800;
-            text-shadow: 0px 0px 10px #ff9800;
+            color: #2196F3; /* Changed to a professional blue */
+            text-shadow: 0px 0px 10px #2196F3;
         }
         nav ul {
             list-style: none;
@@ -33,7 +33,7 @@
         .question {
             cursor: pointer;
             font-weight: bold;
-            color: #ff9800;
+            color: #2196F3; /* Changed to a professional blue */
             margin-top: 10px;
         }
         .answer {
@@ -51,7 +51,7 @@
         }
         .progress-bar {
             height: 10px;
-            background: #ff9800;
+            background: #2196F3; /* Changed to a professional blue */
             border-radius: 5px;
             width: 0%;
             transition: width 1s ease-in-out;
@@ -63,28 +63,34 @@
         }
         #typing-result {
             font-size: 1.2em;
-            color: #ff9800;
+            color: #2196F3; /* Changed to a professional blue */
         }
         .file-upload {
             margin-top: 20px;
             text-align: left;
         }
+        .file-upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         input[type="file"] {
             background-color: #333;
-            border: 1px solid #ff9800;
+            border: 1px solid #2196F3; /* Changed to a professional blue */
             padding: 20px;
             color: #fff;
             cursor: pointer;
             font-size: 1.2em;
             transition: transform 0.3s ease;
+            border-radius: 5px;
         }
         input[type="file"]:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 10px #ff9800;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #2196F3; /* Changed to a professional blue */
         }
         .file-upload label {
             font-size: 1em;
-            color: #ff9800;
+            color: #2196F3; /* Changed to a professional blue */
             font-weight: bold;
         }
         .about-section, .skills-section, .contact-section {
@@ -92,6 +98,15 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .about-section h2, .skills-section h2, .contact-section h2 {
+            color: #2196F3; /* Changed to a professional blue */
+        }
+        .about-section p {
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -115,8 +130,8 @@
         <p><strong>Sterlin Raj GS</strong></p>
         <p>2nd Year BCA Student | Aspiring Software Developer</p>
         <p><strong>Phone:</strong> 7358012637</p>
-        <p><strong>Email:</strong> <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">linkedin.com/in/sterlin-raj-6a91082a9</a></p>
+        <p><strong>Email:</strong> <a href="mailto:sterlinraj65@gmail.com" style="color: #2196F3;">sterlinraj65@gmail.com</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sterlin-raj-6a91082a9" target="_blank" style="color: #2196F3;">linkedin.com/in/sterlin-raj-6a91082a9</a></p>
         
         <h3>Technical Skills</h3>
         <ul>
@@ -179,13 +194,17 @@
     <section id="contact" class="contact-section">
         <h2>Contact Me</h2>
         <p>📞 7358012637</p>
-        <p>📧 <a href="mailto:sterlinraj65@gmail.com">sterlinraj65@gmail.com</a></p>
-        <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank">🔗 LinkedIn</a>
+        <p>📧 <a href="mailto:sterlinraj65@gmail.com" style="color: #2196F3;">sterlinraj65@gmail.com</a></p>
+        <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank" style="color: #2196F3;">🔗 LinkedIn</a>
 
         <!-- File Upload Form -->
         <div class="file-upload">
-            <label for="file-upload">Upload a File:</label>
-            <input type="file" id="file-upload" name="file-upload">
+            <div class="file-upload-container">
+                <label for="file-upload">Upload a File:</label>
+                <input type="file" id="file-upload" name="file-upload" multiple>
+                <button id="upload-button" style="margin-top: 10px; padding: 10px; background-color: #2196F3; color: white; border: none; border-radius: 5px; cursor: pointer;">Upload</button>
+                <div id="uploaded-files" style="margin-top: 10px;"></div>
+            </div>
         </div>
     </section>
 
@@ -207,10 +226,10 @@
             neonEffect.style.position = "fixed";
             neonEffect.style.top = y + "px";
             neonEffect.style.left = x + "px";
-            neonEffect.style.width = "10px";
-            neonEffect.style.height = "10px";
-            neonEffect.style.backgroundColor = "#ff9800";
-            neonEffect.style.borderRadius = "50%";
+            neonEffect.style.width = "15px"; // Increased size for better visibility
+            neonEffect.style.height = "15px"; // Increased size for better visibility
+            neonEffect.style.backgroundColor = "#2196F3"; // Changed to a professional blue
+            neonEffect.style.borderRadius = "10%"; // Changed to a rounded square
             neonEffect.style.opacity = "0.5";
             neonEffect.style.pointerEvents = "none";
             neonEffect.style.transition = "opacity 0.5s ease-out";
@@ -220,6 +239,18 @@
                 neonEffect.style.opacity = "0";
                 setTimeout(() => document.body.removeChild(neonEffect), 500);
             }, 50);
+        });
+
+        document.getElementById("upload-button").addEventListener("click", function() {
+            const fileInput = document.getElementById("file-upload");
+            const uploadedFilesDiv = document.getElementById("uploaded-files");
+            uploadedFilesDiv.innerHTML = ""; // Clear previous uploads
+
+            Array.from(fileInput.files).forEach(file => {
+                const fileItem = document.createElement("div");
+                fileItem.textContent = file.name;
+                uploadedFilesDiv.appendChild(fileItem);
+            });
         });
     </script>
 </body>
