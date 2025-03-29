@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sterlin Raj - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -12,30 +13,43 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            overflow-y: auto; /* Allow vertical scrolling */
-            height: 100vh; /* Full height */
-            cursor: url('https://example.com/cursor.png'), auto; /* Custom cursor */
+            overflow-y: auto;
+            height: 100vh;
+            cursor: url('https://example.com/cursor.png'), auto;
+            transition: background-color 0.5s, color 0.5s;
         }
+
+        /* Dark/Light Mode */
+        body.light-mode {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        /* Glow effect for the title */
         .glow {
             font-size: 2.5em;
-            color: #00bcd4; /* Changed to a modern cyan */
+            color: #00bcd4;
             text-shadow: 0px 0px 20px #00bcd4, 0px 0px 30px #ff9800;
             animation: glow 1.5s infinite alternate;
             transition: transform 0.3s;
         }
+
         @keyframes glow {
             0% { text-shadow: 0px 0px 20px #00bcd4, 0px 0px 30px #ff9800; }
             100% { text-shadow: 0px 0px 30px #ff9800, 0px 0px 40px #00bcd4; }
         }
+
         nav ul {
             list-style: none;
             padding: 0;
             margin: 20px 0;
         }
+
         nav ul li {
             display: inline;
             margin: 0 15px;
         }
+
         nav ul li a {
             color: white;
             text-decoration: none;
@@ -43,100 +57,12 @@
             transition: color 0.3s;
             font-size: 1.2em;
         }
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -5px;
-            width: 0;
-            height: 2px;
-            background: #00bcd4; /* Changed to a modern cyan */
-            transition: width 0.3s ease, left 0.3s ease;
-        }
+
         nav ul li a:hover {
-            color: #ff9800; /* Change color on hover */
+            color: #ff9800;
         }
-        nav ul li a:hover::after {
-            width: 100%;
-            left: 0;
-        }
-        .question {
-            cursor: pointer;
-            font-weight: bold;
-            color: #00bcd4; /* Changed to a modern cyan */
-            margin-top: 10px;
-            transition: transform 0.3s;
-        }
-        .question:hover {
-            transform: scale(1.05);
-        }
-        .answer {
-            display: none;
-            font-size: 1em;
-            color: white;
-            margin-top: 5px;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: scale(0.9);
-        }
-        .answer.show {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-        .progress {
-            width: 100%;
-            background: #333;
-            height: 10px;
-            border-radius: 5px;
-            margin: 5px 0;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 10px;
-            background: #00bcd4; /* Changed to a modern cyan */
-            border-radius: 5px;
-            width: 0%;
-            transition: width 1s ease-in-out;
-        }
-        #typing-input {
-            padding: 10px;
-            margin: 10px;
-            width: 80%;
-        }
-        #typing-result {
-            font-size: 1.2em;
-            color: #00bcd4; /* Changed to a modern cyan */
-        }
-        .file-upload {
-            margin-top: 20px;
-            text-align: left;
-        }
-        .file-upload-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        input[type="file"] {
-            background-color: #333;
-            border: 1px solid #00bcd4; /* Changed to a modern cyan */
-            padding: 20px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: transform 0.3s ease;
-            border-radius: 5px;
-        }
-        input[type="file"]:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px #00bcd4; /* Changed to a modern cyan */
-        }
-        .file-upload label {
-            font-size: 1em;
-            color: #00bcd4; /* Changed to a modern cyan */
-            font-weight: bold;
-        }
-        .about-section, .skills-section, .contact-section, .projects-section {
+
+        .section {
             text-align: left;
             max-width: 800px;
             margin: auto;
@@ -145,87 +71,62 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1s ease-in-out;
-            margin-bottom: 20px; /* Add space between sections */
+            margin-bottom: 20px;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        .about-section h2, .skills-section h2, .contact-section h2, .projects-section h2 {
-            color: #00bcd4; /* Changed to a modern cyan */
-        }
-        .about-section p {
-            line-height: 1.6;
-        }
-        .project {
-            margin: 10px 0;
-            transition: transform 0.3s;
-            opacity: 0;
-            transform: scale(0.9);
-            animation: grow 0.5s forwards; /* Animation for growing effect */
-        }
-        @keyframes grow {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        .uploaded-file {
-            margin: 5px 0;
-            color: #fff;
-            transition: opacity 0.5s ease;
-        }
-        .uploaded-file a {
+
+        .section h2 {
             color: #00bcd4;
-            text-decoration: underline;
         }
-        .delete-button {
-            background-color: #ff5722; /* Red color for delete */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            padding: 5px 10px;
-            margin-left: 10px;
-            transition: background-color 0.3s;
+
+        .file-upload {
+            margin-top: 20px;
+            text-align: left;
         }
-        .delete-button:hover {
-            background-color: #e64a19; /* Darker red on hover */
+
+        .file-upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        /* Game Styles */
-        #game {
-            position: relative;
-            height: 400px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
-            border-radius: 10px;
-            margin: 20px auto;
+
+        input[type="file"] {
+            background-color: #333;
+            border: 1px solid #00bcd4;
             padding: 20px;
-        }
-        .game-character {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
-            background-color: #00bcd4; /* Character color */
-            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.2em;
             transition: transform 0.3s ease;
+            border-radius: 5px;
         }
-        .game-background {
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        input[type="file"]:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00bcd4;
+        }
+
+        .progress {
             width: 100%;
-            height: 100%;
-            background: url('https://example.com/background.jpg') no-repeat center center; /* Replace with your background image */
-            background-size: cover;
-            animation: backgroundAnimation 10s infinite alternate;
+            background: #333;
+            height: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+            overflow: hidden;
         }
-        @keyframes backgroundAnimation {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+
+        .progress-bar {
+            height: 10px;
+            background: #00bcd4;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1s ease-in-out;
         }
-        /* Button Styles */
+
         .start-button {
             padding: 10px 20px;
             background-color: #00bcd4;
@@ -235,17 +136,167 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
         }
+
         .start-button:hover {
             background-color: #ff9800;
             transform: scale(1.05);
         }
-        .correct {
-            color: green;
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            .section {
+                padding: 10px;
+            }
+        }
+
+        /* Additional Styles */
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: transform 0.3s;
+        }
+
+        .testimonial:hover {
+            transform: scale(1.02);
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            transition: transform 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: scale(1.02);
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #00bcd4;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff9800;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            color: #333;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
         }
-        .incorrect {
-            color: red;
-            font-weight: bold;
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #00bcd4;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .contact-form button {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #ff9800;
+        }
+
+        /* Skills Section */
+        .skill {
+            margin: 10px 0;
+        }
+
+        .skill p {
+            margin: 0;
+        }
+
+        .skill .progress {
+            margin-top: 5px;
+        }
+
+        /* Resume Section */
+        .resume-section {
+            margin: 20px 0;
+        }
+
+        .resume-button {
+            padding: 10px 20px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .resume-button:hover {
+            background-color: #ff9800;
+        }
+
+        /* Animation for Resume */
+        .resume-animation {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -257,14 +308,16 @@
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#blog">Blog</a></li>
                 <li><a href="#game">Mini Game</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="Sterlin_Raj_Resume.pdf" download>📄 Resume</a></li>
+                <li><button id="theme-toggle" style="background: none; border: none; color: white; cursor: pointer;">🌙</button></li>
             </ul>
         </nav>
     </header>
 
-    <section id="about" class="about-section">
+    <section id="about" class="section">
         <h2>About Me</h2>
         <p><strong>Sterlin Raj GS</strong></p>
         <p>I am a Full-Stack Web Developer</p>
@@ -289,37 +342,24 @@
         <div class="project">
             <h4>IoT-Based Agricultural Optimization System</h4>
             <p>Designed and developed an IoT-based solution to optimize agricultural processes.</p>
+            <p><strong>Technologies Used:</strong> Arduino, Sensors, Cloud Computing</p>
+            <a href="#" onclick="openModal('project1')">View Details</a>
         </div>
         <div class="project">
             <h4>Personal Portfolio Website</h4>
             <p>Created a responsive portfolio website to showcase my projects and skills.</p>
+            <p><strong>Technologies Used:</strong> HTML, CSS, JavaScript</p>
+            <a href="#" onclick="openModal('project2')">View Details</a>
         </div>
         <div class="project">
             <h4>Online Quiz Application</h4>
             <p>Developed a web-based quiz application using React and Node.js.</p>
+            <p><strong>Technologies Used:</strong> React, Node.js, Express</p>
+            <a href="#" onclick="openModal('project3')">View Details</a>
         </div>
-
-        <h3>Strengths</h3>
-        <ul>
-            <li>Strong problem-solving mindset</li>
-            <li>Passion for learning new technologies</li>
-            <li>Strong analytical & logical thinking</li>
-        </ul>
-
-        <h3>Questions</h3>
-        <p class="question" onclick="toggleAnswer(0)">Who am I?</p>
-        <p class="answer">I am Sterlin Raj GS, a passionate BCA student and tech enthusiast.</p>
-        <p class="question" onclick="toggleAnswer(1)">What motivates me?</p>
-        <p class="answer">Building futuristic applications and solving real-world problems.</p>
-        <p class="question" onclick="toggleAnswer(2)">What are my hobbies?</p>
-        <p class="answer">I enjoy coding, reading tech blogs, and playing video games.</p>
-        <p class="question" onclick="toggleAnswer(3)">What are my future goals?</p>
-        <p class="answer">To become a proficient full-stack developer and work on innovative projects.</p>
-        <p class="question" onclick="toggleAnswer(4)">What is my favorite technology?</p>
-        <p class="answer">I am particularly fond of JavaScript frameworks like React.</p>
     </section>
 
-    <section id="skills" class="skills-section">
+    <section id="skills" class="section">
         <h2>Skills & Achievements</h2>
         <div class="skill">
             <p>C++ (Expert)</p>
@@ -333,25 +373,84 @@
             <p>JavaScript (Intermediate)</p>
             <div class="progress"><div class="progress-bar" id="javascript" style="width: 75%;"></div></div>
         </div>
+        <div class="skill">
+            <p>React (Intermediate)</p>
+            <div class="progress"><div class="progress-bar" id="react" style="width: 70%;"></div></div>
+        </div>
+        <div class="skill">
+            <p>Node.js (Intermediate)</p>
+            <div class="progress"><div class="progress-bar" id="node" style="width: 70%;"></div></div>
+        </div>
     </section>
 
-    <section id="projects" class="projects-section">
+    <section id="projects" class="section">
         <h2>Projects</h2>
         <div class="project">
             <h3>IoT-Based Smart Agriculture</h3>
             <p>Developed a smart farming system using sensors for real-time monitoring.</p>
+            <p><strong>Technologies Used:</strong> IoT, Sensors, Cloud Computing</p>
+            <a href="#" onclick="openModal('project4')">View Details</a>
         </div>
         <div class="project">
             <h3>Personal Portfolio Website</h3>
             <p>Created a responsive portfolio website to showcase my projects and skills.</p>
+            <p><strong>Technologies Used:</strong> HTML, CSS, JavaScript</p>
+            <a href="#" onclick="openModal('project5')">View Details</a>
         </div>
         <div class="project">
             <h3>Online Quiz Application</h3>
             <p>Developed a web-based quiz application using React and Node.js.</p>
+            <p><strong>Technologies Used:</strong> React, Node.js, Express</p>
+            <a href="#" onclick="openModal('project6')">View Details</a>
         </div>
     </section>
 
-    <section id="game">
+    <section id="testimonials" class="section">
+        <h2>Testimonials</h2>
+        <div class="testimonial">
+            <p><strong>John Doe</strong></p>
+            <p>"Sterlin is an exceptional developer who consistently delivers high-quality work."</p>
+        </div>
+        <div class="testimonial">
+            <p><strong>Jane Smith</strong></p>
+            <p>"I had the pleasure of working with Sterlin on a project, and his skills are impressive!"</p>
+        </div>
+        <div class="testimonial">
+            <p><strong>Mark Johnson</strong></p>
+            <p>"Sterlin's attention to detail and problem-solving skills make him a valuable asset."</p>
+        </div>
+    </section>
+
+    <section id="blog" class="section">
+        <h2>Blog</h2>
+        <div class="blog-post">
+            <h3>Understanding JavaScript Closures</h3>
+            <p>JavaScript closures are a powerful feature that allows functions to have access to their outer scope even after the outer function has returned.</p>
+            <a href="#" onclick="openBlogModal('blog1')">Read More</a>
+        </div>
+        <div class="blog-post">
+            <h3>Getting Started with React</h3>
+            <p>React is a popular JavaScript library for building user interfaces. In this post, we will explore the basics of React and how to get started.</p>
+            <a href="#" onclick="openBlogModal('blog2')">Read More</a>
+        </div>
+        <div class="blog-post">
+            <h3>Building RESTful APIs with Node.js</h3>
+            <p>Node.js is a powerful platform for building server-side applications. This post will guide you through creating a RESTful API using Node.js and Express.</p>
+            <a href="#" onclick="openBlogModal('blog3')">Read More</a>
+        </div>
+        <div class="blog-post">
+            <h3>CSS Grid vs Flexbox</h3>
+            <p>In this post, we will compare CSS Grid and Flexbox, two powerful layout systems in CSS, and discuss when to use each.</p>
+            <a href="#" onclick="openBlogModal('blog4')">Read More</a>
+        </div>
+        <div class="blog-post">
+            <h3>JavaScript ES6 Features</h3>
+            <p>JavaScript ES6 introduced many new features that make coding easier and more efficient. Let's explore some of the most useful ones.</p>
+            <a href="#" onclick="openBlogModal('blog5')">Read More</a>
+        </div>
+    </section>
+
+    <section id="game" class="section">
         <h2>Typing Speed Test</h2>
         <button class="start-button" id="start-button">Start Game</button>
         <div class="game-background"></div>
@@ -363,12 +462,25 @@
         <p id="feedback" style="font-size: 1.2em;"></p>
     </section>
 
-    <section id="contact" class="contact-section">
+    <section id="contact" class="section">
         <h2>Contact Me</h2>
+        <div class="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+            <button id="send-button">Send Message</button>
+        </div>
         <p>📞 7358012637</p>
         <p>📧 <a href="mailto:sterlinraj65@gmail.com" style="color: #00bcd4;">sterlinraj65@gmail.com</a></p>
         <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank" style="color: #00bcd4;">🔗 LinkedIn</a></p>
         <p><strong>GitHub:</strong> <a href="https://sterlin-raj.github.io/portfolio/" target="_blank" style="color: #00bcd4;">🐙 GitHub Profile</a></p>
+
+        <!-- Resume Section -->
+        <div class="resume-section">
+            <h2>Resume</h2>
+            <button class="resume-button" onclick="viewResume()">View Resume</button>
+            <a href="Sterlin_Raj_Resume.pdf" download class="resume-button">Download Resume</a>
+        </div>
 
         <!-- File Upload Form -->
         <div class="file-upload">
@@ -384,6 +496,35 @@
         </div>
     </section>
 
+    <footer>
+        <div class="social-icons">
+            <a href="https://github.com/sterlin-raj" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/sterlin-raj-6a91082a9" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="https://twitter.com/sterlinraj" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+        </div>
+        <p>&copy; 2023 Sterlin Raj. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Project Details -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <p><strong>Technologies Used:</strong> <span id="modalTechnologies"></span></p>
+            <a id="modalLink" href="#" target="_blank">View Project</a>
+        </div>
+    </div>
+
+    <!-- Modal for Blog Posts -->
+    <div id="blogModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBlogModal()">&times;</span>
+            <h2 id="blogModalTitle"></h2>
+            <p id="blogModalContent"></p>
+        </div>
+    </div>
+
     <script>
         let uploadedFiles = [];
         let score = 0;
@@ -391,13 +532,18 @@
         let timeLeft = 30;
         const correctText = "Type this text to score points"; // Example text
 
+        // Toggle dark/light mode
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+        });
+
         function toggleAnswer(index) {
-            let answers = document.querySelectorAll('.answer');
+            const answers = document.querySelectorAll('.answer');
             answers[index].classList.toggle('show');
         }
 
         document.getElementById("typing-input").addEventListener("input", function () {
-            let text = this.value.trim().length;
+            const text = this.value.trim().length;
             document.getElementById("typing-result").innerText = "Characters Typed: " + text;
         });
 
@@ -440,28 +586,6 @@
                 document.getElementById("feedback").innerText = "Incorrect! Try again.";
                 document.getElementById("feedback").className = "incorrect";
             }
-        });
-
-        document.addEventListener("mousemove", function (e) {
-            let x = e.clientX;
-            let y = e.clientY;
-            let neonEffect = document.createElement("div");
-            neonEffect.style.position = "fixed";
-            neonEffect.style.top = y + "px";
-            neonEffect.style.left = x + "px";
-            neonEffect.style.width = "15px"; // Increased size for better visibility
-            neonEffect.style.height = "15px"; // Increased size for better visibility
-            neonEffect.style.backgroundColor = "#00bcd4"; // Changed to a modern cyan
-            neonEffect.style.borderRadius = "10%"; // Changed to a rounded square
-            neonEffect.style.opacity = "0.5";
-            neonEffect.style.pointerEvents = "none";
-            neonEffect.style.transition = "opacity 0.5s ease-out";
-            document.body.appendChild(neonEffect);
-
-            setTimeout(() => {
-                neonEffect.style.opacity = "0";
-                setTimeout(() => document.body.removeChild(neonEffect), 500);
-            }, 50);
         });
 
         document.getElementById("upload-button").addEventListener("click", function() {
@@ -541,72 +665,134 @@
             if (index < nameText.length) {
                 nameElement.textContent += nameText.charAt(index);
                 index++;
-                setTimeout(typeName, 100); } else {
+                setTimeout(typeName, 100); 
+            } else {
                 nameElement.classList.add("glow"); // Add glow effect after typing
             }
         }
 
         window.onload = typeName; // Start typing effect on page load
 
-        // Add drag and drop functionality
-        const fileUploadContainer = document.querySelector('.file-upload-container');
-        fileUploadContainer.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUploadContainer.style.border = "2px dashed #00bcd4"; // Highlight on drag
-        });
-
-        fileUploadContainer.addEventListener('dragleave', () => {
-            fileUploadContainer.style.border = "none"; // Remove highlight
-        });
-
-        fileUploadContainer.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUploadContainer.style.border = "none"; // Remove highlight
-            const files = e.dataTransfer.files;
-            if (uploadedFiles.length + files.length > 25) {
-                alert("You can only upload up to 25 files.");
-                return;
-            }
-            Array.from(files).forEach(file => {
-                uploadedFiles.push(file);
-                const fileItem = document.createElement("div");
-                fileItem.classList.add("uploaded-file");
-                fileItem.textContent = file.name;
-
-                const downloadLink = document.createElement("a");
-                downloadLink.href = URL.createObjectURL(file);
-                downloadLink.download = file.name;
-                downloadLink.textContent = " (Download)";
-                downloadLink.style.marginLeft = "5px";
-                downloadLink.style.color = "#00bcd4"; // Link color
-
-                const previewLink = document.createElement("a");
-                previewLink.href = URL.createObjectURL(file);
-                previewLink.target = "_blank";
-                previewLink.textContent = " (Preview)";
-                previewLink.style.marginLeft = "5px";
-                previewLink.style.color = "#00bcd4"; // Link color
-
-                const deleteButton = document.createElement("button");
-                deleteButton.textContent = "Delete";
-                deleteButton.classList.add("delete-button");
-                deleteButton.onclick = function() {
-                    fileItem.style.animation = "shake 0.5s"; // Shake effect
-                    setTimeout(() => {
-                        fileItem.style.opacity = "0"; // Fade out effect
-                        setTimeout(() => {
-                            uploadedFilesDiv.removeChild(fileItem);
-                            uploadedFiles = uploadedFiles.filter(f => f.name !== file.name);
-                        }, 500); // Wait for fade-out animation
-                    }, 500); // Wait for shake animation
-                };
-
-                fileItem.appendChild(downloadLink);
-                fileItem.appendChild(previewLink);
-                fileItem.appendChild(deleteButton);
-                uploadedFilesDiv.appendChild(fileItem);
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
+
+        // Modal functionality
+        function openModal(project) {
+            const modal = document.getElementById("projectModal");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalDescription = document.getElementById("modalDescription");
+            const modalTechnologies = document.getElementById("modalTechnologies");
+            const modalLink = document.getElementById("modalLink");
+
+            if (project === 'project1') {
+                modalTitle.textContent = "IoT-Based Agricultural Optimization System";
+                modalDescription.textContent = "This project involved designing and developing an IoT-based solution to optimize agricultural processes.";
+                modalTechnologies.textContent = "Arduino, Sensors, Cloud Computing";
+                modalLink.href = "https://example.com/project1"; // Replace with actual link
+            } else if (project === 'project2') {
+                modalTitle.textContent = "Personal Portfolio Website";
+                modalDescription.textContent = "Created a responsive portfolio website to showcase my projects and skills.";
+                modalTechnologies.textContent = "HTML, CSS, JavaScript";
+                modalLink.href = "https://example.com/project2"; // Replace with actual link
+            } else if (project === 'project3') {
+                modalTitle.textContent = "Online Quiz Application";
+                modalDescription.textContent = "Developed a web-based quiz application using React and Node.js.";
+                modalTechnologies.textContent = "React, Node.js, Express";
+                modalLink.href = "https://example.com/project3"; // Replace with actual link
+            } else if (project === 'project4') {
+                modalTitle.textContent = "IoT-Based Smart Agriculture";
+                modalDescription.textContent = "Developed a smart farming system using sensors for real-time monitoring.";
+                modalTechnologies.textContent = "IoT, Sensors, Cloud Computing";
+                modalLink.href = "https://example.com/project4"; // Replace with actual link
+            } else if (project === 'project5') {
+                modalTitle.textContent = "Personal Portfolio Website";
+                modalDescription.textContent = "Created a responsive portfolio website to showcase my projects and skills.";
+                modalTechnologies.textContent = "HTML, CSS, JavaScript";
+                modalLink.href = "https://example.com/project5"; // Replace with actual link
+            } else if (project === 'project6') {
+                modalTitle.textContent = "Online Quiz Application";
+                modalDescription.textContent = "Developed a web-based quiz application using React and Node.js.";
+                modalTechnologies.textContent = "React, Node.js, Express";
+                modalLink.href = "https://example.com/project6"; // Replace with actual link
+            }
+
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("projectModal");
+            modal.style.display = "none";
+        }
+
+        // Blog modal functionality
+        function openBlogModal(blog) {
+            const modal = document.getElementById("blogModal");
+            const blogModalTitle = document.getElementById("blogModalTitle");
+            const blogModalContent = document.getElementById("blogModalContent");
+
+            if (blog === 'blog1') {
+                blogModalTitle.textContent = "Understanding JavaScript Closures";
+                blogModalContent.textContent = "JavaScript closures are a powerful feature that allows functions to have access to their outer scope even after the outer function has returned.";
+            } else if (blog === 'blog2') {
+                blogModalTitle.textContent = "Getting Started with React";
+                blogModalContent.textContent = "React is a popular JavaScript library for building user interfaces. In this post, we will explore the basics of React and how to get started.";
+            } else if (blog === 'blog3') {
+                blogModalTitle.textContent = "Building RESTful APIs with Node.js";
+                blogModalContent.textContent = "Node.js is a powerful platform for building server-side applications. This post will guide you through creating a RESTful API using Node.js and Express.";
+            } else if (blog === 'blog4') {
+                blogModalTitle.textContent = "CSS Grid vs Flexbox";
+                blogModalContent.textContent = "In this post, we will compare CSS Grid and Flexbox, two powerful layout systems in CSS, and discuss when to use each.";
+            } else if (blog === 'blog5') {
+                blogModalTitle.textContent = "JavaScript ES6 Features";
+                blogModalContent.textContent = "JavaScript ES6 introduced many new features that make coding easier and more efficient. Let's explore some of the most useful ones.";
+            }
+
+            modal.style.display = "block";
+        }
+
+        // Close blog modal
+        function closeBlogModal() {
+            const modal = document.getElementById("blogModal");
+            modal.style.display = "none";
+        }
+
+        // Event listeners for modal close
+        window.onclick = function(event) {
+            const projectModal = document.getElementById("projectModal");
+            const blogModal = document.getElementById("blogModal");
+            if (event.target == projectModal || event.target == blogModal) {
+                closeModal();
+                closeBlogModal();
+            }
+        }
+
+        // Contact form submission
+        document.getElementById("send-button").addEventListener("click", function() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            if (name && email && message) {
+                alert("Message sent successfully!");
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("message").value = "";
+            } else {
+                alert("Please fill in all fields.");
+            }
+        });
+
+        // View Resume Function
+        function viewResume() {
+            window.open('Sterlin_Raj_Resume.pdf', '_blank');
+        }
     </script>
 </body>
 </html>
